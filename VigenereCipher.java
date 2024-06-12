@@ -5,25 +5,29 @@ import java.util.Scanner;
  */
 public class VigenereCipher {
 
+    // Initialize a 26x26 array
+    public static String[][] abcArray = new String[26][26];
+              
+    // The alphabet string
+    public static String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    public static void Board() {
+            for (int i = 0; i < 26; i++) {
+                for (int j = 0; j < 26; j++) {
+                    abcArray[i][j] = String.valueOf(alphabet.charAt(j));
+                }
+                char firstLetter = alphabet.charAt(0);
+                String restOfString = alphabet.substring(1);
+            alphabet = restOfString + firstLetter;
+            }
+    }
+
     public static String Encryption(String key, String decryptedWord) {
         int keyAdd = 0;
         // the encrypted word
         String encryptedWord = "";
-        
-        // Initialize a 26x26 array
-        String[][] abcArray = new String[26][26];
-                
-        // The alphabet string
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        
-        for (int i = 0; i < 26; i++) {
-            for (int j = 0; j < 26; j++) {
-                abcArray[i][j] = String.valueOf(alphabet.charAt(j));
-            }
-            char firstLetter = alphabet.charAt(0);
-            String restOfString = alphabet.substring(1);
-        alphabet = restOfString + firstLetter;
-        }
+    
+        Board();
 
         for (int k = 0; k < decryptedWord.length(); k++) {
             if (k >= key.length()) {
@@ -53,29 +57,18 @@ public class VigenereCipher {
     }
 
     public static String Decryption(String key, String encryptedWord) {
+        int keyLength = key.length() - 1;
         int indexLetter = 0;
         int keyAdd = 0;
 
         // the encrypted word
         String decryptedWord = "";
-        // Initialize a 26x26 array
-        String[][] abcArray = new String[26][26];
         
-        // The alphabet string
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        
-        for (int i = 0; i < 26; i++) {
-            for (int j = 0; j < 26; j++) {
-                abcArray[i][j] = String.valueOf(alphabet.charAt(j));
-            }
-            char firstLetter = alphabet.charAt(0);
-            String restOfString = alphabet.substring(1);
-            alphabet = restOfString + firstLetter;
-        }
+        Board();
         
         for (int k = 0; k < encryptedWord.length(); k++) {
-            if (k >= key.length()) {
-                if (k == key.length()) 
+            if (k >= keyLength) {
+                if (k == keyLength || keyAdd == keyLength) 
                     keyAdd = 0;
                 String keyLetter = String.valueOf(key.charAt(keyAdd));
                 int keyLetterIndex = alphabet.indexOf(keyLetter);
