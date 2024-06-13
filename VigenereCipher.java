@@ -11,7 +11,7 @@ public class VigenereCipher {
     // The alphabet string
     public static String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    public static void Board() {
+    public static void board() {
             for (int i = 0; i < 26; i++) {
                 for (int j = 0; j < 26; j++) {
                     abcArray[i][j] = String.valueOf(alphabet.charAt(j));
@@ -22,12 +22,12 @@ public class VigenereCipher {
             }
     }
 
-    public static String Encryption(String key, String decryptedWord) {
+    public static String encryption(String key, String decryptedWord) {
         int keyAdd = 0;
         // the encrypted word
         String encryptedWord = "";
     
-        Board();
+        board();
 
         for (int k = 0; k < decryptedWord.length(); k++) {
             if (k >= key.length()) {
@@ -56,7 +56,7 @@ public class VigenereCipher {
         return encryptedWord;
     }
 
-    public static String Decryption(String key, String encryptedWord) {
+    public static String decryption(String key, String encryptedWord) {
         int keyLength = key.length() - 1;
         int indexLetter = 0;
         int keyAdd = 0;
@@ -64,7 +64,7 @@ public class VigenereCipher {
         // the encrypted word
         String decryptedWord = "";
         
-        Board();
+        board();
         
         for (int k = 0; k < encryptedWord.length(); k++) {
             if (k >= keyLength) {
@@ -120,7 +120,7 @@ public class VigenereCipher {
             System.out.print("Input decrypted word: ");
             String decryptedWord = scanner.nextLine().toUpperCase();
             
-            System.out.println(Encryption(key, decryptedWord));
+            System.out.println(encryption(key, decryptedWord));
         } else {
             // key
             System.out.print("Input key: ");
@@ -130,7 +130,7 @@ public class VigenereCipher {
             System.out.print("Input encrypted word: ");
             String encryptedWord = scanner.nextLine().toUpperCase();
             
-            System.out.println(Decryption(key, encryptedWord));
+            System.out.println(decryption(key, encryptedWord));
         }
         
     }
